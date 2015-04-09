@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+
+  "name": "Power Find",
+  "description": "More powerful version of the builtin Chrome find tool.",
+  "version": "0.1",
+  "author": "Austin Heiman",
+
+  "permissions": [],
+
+  "icons": {
+    "16": "images/power-find-16.png",
+    "48": "images/power-find-48.png",
+    "128": "images/power-find-128.png"
+  },
+
+  "browser_action": {
+    "default_icon": {
+      "19": "images/icon19.png",
+      "38": "images/icon38.png"
+    },
+    "default_title": "Power Find",  // tooltip
+    "default_popup": "popup.html"   // popup on click
+  },
+
+  "background": {
+    "scripts": ["searches.js", "event.js"],
+    "persistent": false
+  }
+}

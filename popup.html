@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <!-- Bootstrap meta -->
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!-- Bootstrap CSS -->
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css'>
+
+    <style>
+      label {
+        font-family: monospace;
+      }
+      input {
+        font-family: monospace;
+      }
+    </style>
+    <script src='popup.js'></script>
+  </head>
+  <body>
+    <div class='container-fluid text-center'>
+      <form>
+        <div class='btn-group btn-group-xs' data-toggle='buttons'>
+          <label class='btn btn-default active'>
+            <input type='checkbox' name='ignoreCase' checked> aA
+          </label>
+          <label class='btn btn-default'>
+            <input type='checkbox' name='regex'> .*
+          </label>
+        </div>
+
+        <input type='text'
+               name='pattern'
+               placeholder='Pattern'
+               autofocus />
+
+        <div class='btn-group btn-group-xs' role='group' aria-label='...'>
+          <!-- <button type='button' class='btn btn-default'>
+            <span class='glyphicon glyphicon glyphicon-chevron-up'> Next</span>
+          </button>
+          <button type='button' class='btn btn-default'>
+            <span class='glyphicon glyphicon glyphicon-chevron-down'> Previous</span>
+          </button> -->
+          <button type='button' class='btn btn-default'><strong>&or;</strong></button>
+          <button type='button' class='btn btn-default'>&and;</button>
+        </div>
+      </form>
+      <p class='text-primary'>12 matches</p>
+      <p class='text-danger'>No matches</p>
+      <!-- <button id='next'>&darr;</button>
+      <button id='previous'>&uarr;</button> -->
+      <!-- <button id='next'>&#9660;</button>
+      <button id='previous'>&#9650;</button> -->
+    </div>
+
+    <!-- jQuery -->
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js'></script>
+    <!-- Bootstrap JS -->
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+  </body>
+</html>
