@@ -22,6 +22,30 @@
   <body>
     <div class='container-fluid text-center'>
       <form>
+        <div class='input-group'>
+          <label class='input-group-addon'>
+            <input type='checkbox' name='ignoreCase' checked /> aA
+          </label>
+          <label class='input-group-addon'>
+            <input type='checkbox' name='regex' /> .*
+          </label>
+
+
+          <!-- <label class='btn btn-default'>
+            <input type='checkbox' name='regex' /> .*
+          </label> -->
+
+          <input type='text' class='form-control' placeholder='Pattern' autofocus />
+
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">&or;</button>
+          </span>
+          <!-- <span class="input-group-btn">
+            <button class="btn btn-default" type="button">&and;</button>
+          </span> -->
+
+        </div> <!-- /.input-group -->
+
         <!-- <div class='btn-group btn-group-xs' data-toggle='buttons'>
           <label class='btn btn-default active'>
             <input type='checkbox' name='ignoreCase' checked> aA
@@ -38,21 +62,17 @@
 
         <div class='btn-group btn-group-xs' role='group'> -->
 
-          <!-- <button type='button' class='btn btn-default'>
-            <span class='glyphicon glyphicon glyphicon-chevron-up'>Next</span>
-          </button> -->
+          <!-- <span class='glyphicon glyphicon glyphicon-chevron-up'></span>
+          &darr; &uarr; &#9660; &#9650; -->
 
           <!-- <button type='button' class='btn btn-default'>&or;</button>
           <button type='button' class='btn btn-default'>&and;</button>
         </div> -->
       </form>
+
       <p class='text-primary'>12 matches</p>
       <p class='text-danger'>No matches</p>
-      <!-- <button id='next'>&darr;</button>
-      <button id='previous'>&uarr;</button> -->
-      <!-- <button id='next'>&#9660;</button>
-      <button id='previous'>&#9650;</button> -->
-    </div>
+    </div> <!-- ./container -->
 
     <!-- jQuery -->
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js'></script>
