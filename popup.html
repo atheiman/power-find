@@ -1,82 +1,68 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <!-- Bootstrap meta -->
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-    <!-- Bootstrap CSS -->
-    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
-    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css'>
+    <!-- Project info -->
+    <title>Power Find</title>
+    <meta name="description"
+          content="More powerful version of the builtin Chrome find tool.">
+    <meta name="author" content="Austin Heiman">
+    <link rel="icon" href'images/power-find-16.png'>
 
-    <style>
-      label {
-        font-family: monospace;
-      }
-      input {
-        font-family: monospace;
-      }
-    </style>
-    <script src='popup.js'></script>
+    <!-- Bootstrap CSS -->
+    <link rel='stylesheet' href='bootstrap-3.3.4/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='bootstrap-3.3.4/css/bootstrap-theme.min.css'>
+
+    <!-- Popup CSS -->
+    <link rel='stylesheet' href='popup.css'>
   </head>
+
   <body>
     <div class='container-fluid text-center'>
-      <form>
-        <div class='input-group'>
-          <label class='input-group-addon'>
-            <input type='checkbox' name='ignoreCase' checked /> aA
+      <form class='form-inline'>
+        <div class='input-group input-group-sm'>
+          <label class='input-group-addon btn btn-default' data-toggle='tooltip'
+                 data-placement='right' title='Case sensitive search'
+                 data-container='body'
+                 data-delay='{"show":"1000", "hide":"50"}'>
+            <input type='checkbox' name='caseSensitive' /> aA
           </label>
-          <label class='input-group-addon'>
+
+          <label class='input-group-addon btn btn-default' data-toggle='tooltip'
+                 data-placement='right' title='Regular expression matching'
+                 data-container='body'
+                 data-delay='{"show":"1000", "hide":"50"}'>
             <input type='checkbox' name='regex' /> .*
           </label>
 
+          <input type='text' class='form-control' placeholder='Pattern'
+                 name='pattern' onkeyup='app.highlightAll()' autofocus
+                 onclick='app.highlightAll()' />
 
-          <!-- <label class='btn btn-default'>
-            <input type='checkbox' name='regex' /> .*
-          </label> -->
-
-          <input type='text' class='form-control' placeholder='Pattern' autofocus />
-
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">&or;</button>
+          <span class='input-group-btn'>
+            <button class='btn btn-primary' type='button' id='findButton'
+                    onclick='app.next()'>
+              Find
+            </button>
           </span>
-          <!-- <span class="input-group-btn">
-            <button class="btn btn-default" type="button">&and;</button>
-          </span> -->
 
         </div> <!-- /.input-group -->
-
-        <!-- <div class='btn-group btn-group-xs' data-toggle='buttons'>
-          <label class='btn btn-default active'>
-            <input type='checkbox' name='ignoreCase' checked> aA
-          </label>
-          <label class='btn btn-default'>
-            <input type='checkbox' name='regex'> .*
-          </label>
-        </div>
-
-        <input type='text'
-               name='pattern'
-               placeholder='Pattern'
-               autofocus />
-
-        <div class='btn-group btn-group-xs' role='group'> -->
-
-          <!-- <span class='glyphicon glyphicon glyphicon-chevron-up'></span>
-          &darr; &uarr; &#9660; &#9650; -->
-
-          <!-- <button type='button' class='btn btn-default'>&or;</button>
-          <button type='button' class='btn btn-default'>&and;</button>
-        </div> -->
       </form>
 
-      <p class='text-primary'>12 matches</p>
-      <p class='text-danger'>No matches</p>
-    </div> <!-- ./container -->
+      <!-- used to output messages such as '12 matches' or 'No matches'.
+      add text-primary or text-danger to classlist for blue or red text. -->
+      <p class='' id='messageP'></p>
+    </div> <!-- /.container -->
 
     <!-- jQuery -->
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js'></script>
+    <script src='jquery-2.1.3.min.js'></script>
     <!-- Bootstrap JS -->
-    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+    <script src='bootstrap-3.3.4/js/bootstrap.min.js'></script>
+    <!-- Popup JS -->
+    <script src='popup.js'></script>
   </body>
 </html>

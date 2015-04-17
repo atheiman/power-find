@@ -6,7 +6,10 @@
   "version": "0.1",
   "author": "Austin Heiman",
 
-  "permissions": [],
+  "permissions": [
+    "http://*/",
+    "https://*/"
+  ],
 
   "icons": {
     "16": "images/power-find-16.png",
@@ -16,15 +19,10 @@
 
   "browser_action": {
     "default_icon": {
-      "19": "images/icon19.png",
-      "38": "images/icon38.png"
+      "19": "images/power-find-19.png",
+      "38": "images/power-find-38.png"
     },
     "default_title": "Power Find",  // tooltip
     "default_popup": "popup.html"   // popup on click
-  },
-
-  "background": {
-    "scripts": ["searches.js", "event.js"],
-    "persistent": false
   }
 }
