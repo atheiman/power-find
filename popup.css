@@ -1,0 +1,21 @@
+/* Popup CSS */
+
+body {
+    width: 350px;
+}
+
+input[type="text"] {
+    font-family: monospace;
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.container-fluid {
+    padding: 10px 10px 0 10px;
+}
+
+.bg-red {
+    background-color: red;
+}
