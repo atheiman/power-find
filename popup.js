@@ -1,68 +1,73 @@
 // Popup JS
 
-window.setTimeout(function () {
-    // delay tooltip activation to solve tooltip being visible on popup
-    $(function () {
-        $("[data-toggle='tooltip']").tooltip();
-    })
-}, 100);
+// // tooltip activation
+// $(function () {
+//    $("[data-toggle='tooltip']").tooltip();
+// })()
 
-function App() {
-    this.elements = {
-        'form': document.forms[0],
-        'findButton': document.getElementById('findButton'),
-        'messageP': document.getElementById('messageP'),
-    }
+function highlightAll() {
+    // wrap all matching patterns in highlight span
+    console.log('highlightAll triggered');
+    var modifiers = 'gi';
 
-    this.elements.form.addEventListener('keypress', function (e) {
-        var key = e.which || e.keyCode;
-        if (key === 13) { // 13 is enter
-            app.findNext()
-        }
-    });
+    if (this.form.regex.checked === true)
+        regex = true;
+    if (this.form.caseSensitive.checked === true)
+        modifiers = 'g';
 
+    // pass re to content script for highlighting
+    var msg = {action: 'highlightAll',
+               re: new RegExp(form.pattern.value, modifiers)};
+    console.log("sending msg:", msg);
+    port.postMessage(msg);
+}
 
-    this.highlightAll = function () {
-        var modifiers = 'gi';
+function findNext() {
+    // scroll to next highlight span
+    console.log('findNext triggered');
 
-        if (this.elements.form.regex.checked === true)
-            regex = true;
-        if (this.elements.form.caseSensitive.checked === true)
-            modifiers = 'g';
+    var msg = {action: 'findNext'}
+    console.log("sending msg:", msg);
+    port.postMessage(msg);
+}
 
-        // get list of matches
-        var re = new RegExp(app.elements.form.pattern.value, modifiers);
-        console.log('regexp:', re);
-
-        // pass re to background script expecting to get matches back.
-        //var matches = document.getElementsByTagName('body')[0].innerText.match(re);
-
-        // iterate through matches
-        matches.forEach(function (match, index, matches) {
-            // wrap match with .bg-red span
-            // http://stackoverflow.com/questions/1835903/how-do-to-wrap-a-span-around-a-section-of-text-without-using-jquery
-        });
-
-        console.log('searching for pattern', this.elements.form.pattern.value);
-    }
-
-    this.findNext = function () {
-        // scroll to next highlight span
-    }
-
-    this.setMessage = function (msgText, className) {
-        // set messageP element to msgText, clears messageP.className,
-        // sets messageP.className to className
-        this.elements.messageP.innerText = msgText;
-        this.elements.messageP.className = '';
-        if (typeof className === 'string') {
-            this.elements.messageP.className = className;
-        }
-    }
-
-    this.close = function () {
-        window.close();
+function setMessage(msgText, className) {
+    // set messageP element to msgText, clears messageP.className,
+    // sets messageP.className to className
+    this.messageP.innerText = msgText;
+    this.messageP.className = '';
+    if (typeof className === 'string') {
+        this.messageP.className = className;
     }
 }
 
-var app = new App();
+var form = document.forms[0],
+    findButton = document.getElementById('findButton'),
+    messageP = document.getElementById('messageP');
+
+findButton.addEventListener('click', function (e) {
+    findNext();
+});
+
+form.pattern.addEventListener('keypress', function (e) {
+    var key = e.which || e.keyCode;
+    if (key === 13) { // 13 is enter
+        findButton.click();
+    } else {
+        highlightAll();
+    }
+});
+
+// load content scripts into page
+chrome.tabs.executeScript({file: "content_script.js"});
+chrome.tabs.insertCSS({file: "content_script.css"});
+
+// open port to content script
+chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    port = chrome.tabs.connect(tabs[0].id);
+    console.log('port connected:', port);
+
+    port.onMessage.addListener(function (msg) {
+        console.log('msg received:', msg);
+    })
+});

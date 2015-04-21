@@ -40,12 +40,10 @@
           </label>
 
           <input type='text' class='form-control' placeholder='Pattern'
-                 name='pattern' onkeyup='app.highlightAll()' autofocus
-                 onclick='app.highlightAll()' />
+                 name='pattern' autofocus />
 
           <span class='input-group-btn'>
-            <button class='btn btn-primary' type='button' id='findButton'
-                    onclick='app.next()'>
+            <button class='btn btn-primary' type='button' id='findButton'>
               Find
             </button>
           </span>
@@ -53,8 +51,6 @@
         </div> <!-- /.input-group -->
       </form>
 
-      <!-- used to output messages such as '12 matches' or 'No matches'.
-      add text-primary or text-danger to classlist for blue or red text. -->
       <p class='' id='messageP'></p>
     </div> <!-- /.container -->
 
